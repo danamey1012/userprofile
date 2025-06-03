@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>User Profile</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css"/>
+  
+</head>
+<body>
+
+  
+
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Edit Profile</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+  
+    body {
+      margin: 0;
+      background-color: #f4f4f8;
+    }
+  
+    .profile-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 90vh;
+      padding: 2rem;
+    }
+  
+    .form-card {
+      background: #fff;
+      padding: 3rem 2.5rem;
+      border-radius: 20px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+      width: 100%;
+      max-width: 480px;
+      text-align: center;
+    }
+  
+    .form-card h2 {
+      font-size: 1.8rem;
+      margin-bottom: 2rem;
+      color: #4b0082;
+    }
+  
+    .form-card input[type="text"],
+    .form-card input[type="file"] {
+      width: 100%;
+      padding: 14px;
+      margin-bottom: 1.4rem;
+      border: 1px solid #d1d1d1;
+      border-radius: 10px;
+      font-size: 1rem;
+      transition: border 0.3s ease;
+    }
+  
+    .form-card input[type="text"]:focus,
+    .form-card input[type="file"]:focus {
+      border-color: #6a5acd;
+      outline: none;
+    }
+  
+    .form-card button {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, #6a5acd, #7b68ee);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s, box-shadow 0.3s;
+      box-shadow: 0 4px 12px rgba(106, 90, 205, 0.3);
+    }
+  
+    .form-card button:hover {
+      background: linear-gradient(135deg, #7b68ee, #8470ff);
+      box-shadow: 0 6px 20px rgba(106, 90, 205, 0.4);
+    }
+  
+    @media (max-width: 100px) {
+      .form-card {
+        padding: 2rem 1.5rem;
+      }
+    }
+    .profile-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+  padding: 1rem;
+}
+
+.form-card {
+  background: #ffffff;
+  padding: 2rem 1.5rem;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 380px;
+  text-align: left;
+}
+
+.form-card h2 {
+  font-size: 1.6rem;
+  margin-bottom: 1.5rem;
+  color: #4b0082;
+  text-align: center;
+}
+
+.form-card input[type="text"],
+.form-card input[type="file"] {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: border-color 0.3s;
+}
+
+.form-card input[type="text"]:focus,
+.form-card input[type="file"]:focus {
+  border-color: #6a5acd;
+  outline: none;
+}
+
+.form-card button {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #6a5acd, #7b68ee);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.form-card button:hover {
+  background: linear-gradient(135deg, #7b68ee, #8470ff);
+  transform: scale(1.02);
+}
+
+  </style>
+  
+
+  <!-- Top Navigation -->
+  <div class="top-nav">
+    <div class="logo">StitchIt</div>
+    <div class="nav-buttons">
+      <button class="nav-btn">Home</button>
+      <button class="nav-btn">Shop</button>
+      <button class="nav-btn">Customize</button>
+      <button class="nav-btn">Contact</button>
+      <div class="profile-circle"></div>
+    </div>
+  </div>
+
+  <section class="profile-section">
+    <div class="form-card">
+      <h2>Edit Your Profile</h2>
+      <form id="profileForm">
+        <input type="text" id="firstName" placeholder="First Name" required />
+        <input type="text" id="lastName" placeholder="Last Name" required />
+        <input type="text" id="username" placeholder="Username" required />
+        <input type="file" id="photo" accept="image/*" />
+        <button type="submit">Save Profile</button>
+      </form>
+    </div>
+  </section>
+  
+
+  <script>
+    const form = document.getElementById("profileForm");
+  
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+  
+      const firstName = document.getElementById("firstName").value;
+      const lastName = document.getElementById("lastName").value;
+      const username = document.getElementById("username").value;
+      const photoInput = document.getElementById("photo");
+      const photoFile = photoInput.files[0];
+  
+      if (photoFile) {
+        const reader = new FileReader();
+        reader.onload = function() {
+          const userProfile = {
+            firstName,
+            lastName,
+            username,
+            photo: reader.result,
+          };
+          localStorage.setItem("userProfile", JSON.stringify(userProfile));
+          window.location.href = "user_profile.html";
+        };
+        reader.readAsDataURL(photoFile);
+      } else {
+        const userProfile = {
+          firstName,
+          lastName,
+          username,
+          photo: null,
+        };
+        localStorage.setItem("userProfile", JSON.stringify(userProfile));
+        window.location.href = "user_profile.html";
+      }
+    });
+  </script>
+
+     </div>
+    </div>
+  </div>
+</section>
+
+<section class="card">
+  <h3>Recent Orders</h3>
+  <div class="order-entry">
+    <div class="order-info">
+      <strong>Crochet Tote Bag</strong>
+      <p>Ordered on: May 10, 2025</p>
+    </div>
+    <div class="btn-group">
+      <button class="btn">Buy Again</button>
+      <button class="btn-danger">Delete</button>
+    </div>
+  </div>
+</section>
+
+<section class="card">
+  <h3>Custom Request History</h3>
+  <div class="history-header">
+    <span>Product</span>
+    <span>Image/Design</span>
+    <span>Notes</span>
+    <span>Status</span>
+  </div>
+  <div class="history-row">
+    <div class="box"></div>
+    <div class="box image-box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+  </div>
+</section>
+
+<section class="card">
+  <h3>User Reviews</h3>
+  <div class="review">
+    <span class="stars">★★★★★</span>
+    <span><strong>Maganda</strong></span>
+    <span>- May 22, 1980</span>
+  </div>
+  <div class="review">
+    <span class="stars">★★★★☆</span>
+    <span><strong>Okay lang</strong></span>
+    <span>- May 22, 1981</span>
+  </div>
+  <div class="review">
+    <span class="stars">★★☆☆☆</span>
+    <span><strong>Panget</strong></span>
+    <span>- May 22, 1982</span>
+  </div>
+</section>
+
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    const profile = JSON.parse(localStorage.getItem("profileData"));
+    if (profile) {
+      document.getElementById("fullName").textContent = `${profile.firstName} ${profile.lastName}`;
+      document.getElementById("username").textContent = `@${profile.username}`;
+      document.getElementById("profilePhoto").style.backgroundImage = `url('${profile.photo}')`;
+    }
+  });
+</script>
+
+</body>
+</html>

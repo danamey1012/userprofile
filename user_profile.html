@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>User Profile</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <div class="top-nav">
+    <div class="logo">StitchIt</div>
+    <div class="nav-buttons">
+      <button class="nav-btn">Home</button>
+      <button class="nav-btn">Shop</button>
+      <button class="nav-btn">Customize</button>
+      <button class="nav-btn">Contact</button>
+
+          <div class="profile-circle"></div>
+    </div>
+  </div>
+  
+
+<section class="profile-section" style="display: flex; gap: 2rem;">
+  <div class="profile-left">
+    <div class="avatar">
+    </div>
+    <h2>Example Name</h2>
+    <p>@exampleusername</p>
+    <a href="edit-profile.html" class="edit-button">Edit Profile</a>
+
+  </div>
+
+  <div class="profile-right">
+    <h3>Address</h3>
+<p id="current-address">69 Tequila St. Brgy. Toni Fowler, Tahimik Lang Sa Umpisa</p>
+
+<button id="add-address-btn" class="btn-secondary">Add New Address</button>
+
+<div id="address-input-container" style="margin-top: 1rem; display: none;">
+  <input type="text" id="new-address-input" placeholder="Enter new address" style="width: 100%; padding: 0.5rem; border-radius: 5px; border: 1px solid #ccc;" />
+  <button id="save-address-btn" class="btn-secondary" style="margin-top: 0.5rem;">Save Address</button>
+</div>
+
+
+    <div class="stats-container" style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+      <div class="stat-box" style="background: #6a5acd; color: white; padding: 1rem; border-radius: 8px; flex: 1; text-align: center;">
+        <h4>Total Orders</h4>
+        <p style="font-size: 1.5rem; font-weight: bold;">25</p>
+      </div>
+      <div class="stat-box" style="background: #9370db; color: white; padding: 1rem; border-radius: 8px; flex: 1; text-align: center;">
+        <h4>Customized Items</h4>
+        <p style="font-size: 1.5rem; font-weight: bold;">10</p>
+      </div>
+      <div class="stat-box" style="background: #8a2be2; color: white; padding: 1rem; border-radius: 8px; flex: 1; text-align: center;">
+        <h4>Pending Shipments</h4>
+        <p style="font-size: 1.5rem; font-weight: bold;">3</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="card">
+  <h3>Recent Orders</h3>
+
+  <div class="order-entry">
+    <div class="order-info">
+      <strong>Crochet Tote Bag</strong>
+      <p>Ordered on: May 10, 2025</p>
+    </div>
+    <div class="btn-group">
+      <button class="btn">Buy Again</button>
+      <button class="btn-danger delete-btn">Delete</button>
+    </div>
+  </div>
+
+  <div class="order-entry">
+    <div class="order-info">
+      <strong>Crochet Halter Top</strong>
+      <p>Ordered on: May 11, 2025</p>
+    </div>
+    <div class="btn-group">
+      <button class="btn">Buy Again</button>
+      <button class="btn-danger delete-btn">Delete</button>
+    </div>
+  </div>
+  <div class="order-entry">
+    <div class="order-info">
+      <strong>Mini Skirt</strong>
+      <p>Ordered on: May 12, 2025</p>
+    </div>
+    <div class="btn-group">
+      <button class="btn">Buy Again</button>
+      <button class="btn-danger delete-btn">Delete</button>
+    </div>
+  </div>
+
+</section>
+
+
+  <section class="card">
+    <h3>Custom Request History</h3>
+    <div class="history-header">
+      <span>Product</span>
+      <span>Image/Design</span>
+      <span>Notes</span>
+      <span>Status</span>
+    </div>
+    <div class="history-row">
+      <div class="box"></div>
+      <div class="box image-box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h3>User Reviews</h3>
+    <div class="review">
+      <span class="stars">★★★★★</span>
+      <span><strong>Maganda</strong></span>
+      <span>- May 22, 1980</span>
+    </div>
+    <div class="review">
+      <span class="stars">★★★★☆</span>
+      <span><strong>Okay lang</strong></span>
+      <span>- May 22, 1981</span>
+    </div>
+    <div class="review">
+      <span class="stars">★★☆☆☆</span>
+      <span><strong>Panget</strong></span>
+      <span>- May 22, 1982</span>
+    </div>
+  </section>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const userProfile = JSON.parse(localStorage.getItem("userProfile"));
+  
+      if (userProfile) {
+        const avatarDiv = document.querySelector(".avatar");
+        const nameElement = document.querySelector(".profile-left h2");
+        const usernameElement = document.querySelector(".profile-left p");
+  
+        if (userProfile.photo) {
+          const img = document.createElement("img");
+          img.src = userProfile.photo;
+          img.alt = "User Photo";
+          img.style.width = "120px";
+          img.style.height = "120px";
+          img.style.objectFit = "cover";
+          img.style.borderRadius = "50%";
+          avatarDiv.appendChild(img);
+        } else {
+          avatarDiv.innerHTML = '<div style="width: 120px; height: 120px; background: #ccc; border-radius: 50%;"></div>';
+        }
+        nameElement.textContent = `${userProfile.firstName} ${userProfile.lastName}`;
+        usernameElement.textContent = `@${userProfile.username}`;
+      }
+  
+      const addAddressBtn = document.getElementById("add-address-btn");
+      const addressInputContainer = document.getElementById("address-input-container");
+      const saveAddressBtn = document.getElementById("save-address-btn");
+      const newAddressInput = document.getElementById("new-address-input");
+      const currentAddress = document.getElementById("current-address");
+  
+      addAddressBtn.addEventListener("click", () => {
+        if (addressInputContainer.style.display === "none") {
+          addressInputContainer.style.display = "block";
+          newAddressInput.focus();
+        } else {
+          addressInputContainer.style.display = "none";
+        }
+      });
+  
+      saveAddressBtn.addEventListener("click", () => {
+        const newAddress = newAddressInput.value.trim();
+        if (newAddress === "") {
+          alert("Please enter an address.");
+          return;
+        }
+  
+        currentAddress.textContent = newAddress;
+
+        newAddressInput.value = "";
+        addressInputContainer.style.display = "none";
+      });
+  
+      const deleteButtons = document.querySelectorAll(".delete-btn");
+  
+      deleteButtons.forEach(button => {
+        button.addEventListener("click", () => {
+          const orderEntry = button.closest(".order-entry");
+          if (orderEntry) {
+            orderEntry.remove();
+          }
+        });
+      });
+    });
+  </script>
+  
+  
+  
+
+</body>
+</html>
